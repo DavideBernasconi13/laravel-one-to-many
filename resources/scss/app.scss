@@ -12,3 +12,27 @@ $fa-font-path: "../fonts/webfonts" !default;
 h1 {
     color: $text-color;
 }
+
+/* -------------------------------------------------------------------------------- */
+/* ! Admin template */
+/* -------------------------------------------------------------------------------- */
+#admin {
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+
+    #wrapper {
+        background-color: red;
+        flex-grow: 1;
+
+        header {
+            min-height: 70px;
+        }
+    }
+
+    #sidebar {
+        background-color: $black;
+        color: $light;
+        padding: 40px;
+    }
+}

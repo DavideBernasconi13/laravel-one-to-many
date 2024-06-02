@@ -8,8 +8,8 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Portfolio') }}</title>
-
+    {{-- <title>{{ config('app.name', 'Portfolio') }}</title> --}}
+    <title>@yield('title', 'Portfolio')</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">

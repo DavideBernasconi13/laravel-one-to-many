@@ -31,8 +31,10 @@
                             <td>{{$project->created_at}}</td>
                             <td>{{$project->updated_at}}</td>
                             <td>
-                                <a href="#" title="Show" class="text-black px-2"><i class="fa-solid fa-eye"></i></a>
-                                <a href="#" title="Edit" class="text-black px-2"><i class="fa-solid fa-pen"></i></a>
+                                <a href="{{route('admin.projects.show', $project->slug)}}" title="Show"
+                                    class="text-black px-2"><i class="fa-solid fa-eye"></i></a>
+                                <a href="{{route('admin.projects.edit', $project->slug)}}" title="Edit"
+                                    class="text-black px-2"><i class="fa-solid fa-pen"></i></a>
                                 <!-- aggiungere delete -->
                             </td>
                         </tr>

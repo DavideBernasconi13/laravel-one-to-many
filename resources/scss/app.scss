@@ -22,11 +22,16 @@ h1 {
     display: flex;
 
     #wrapper {
-        background-color: #eee; 
+        background-color: #eee;
         flex-grow: 1;
 
         header {
             min-height: 70px;
+        }
+
+        .img-profile {
+            width: 1.25rem;
+            height: 1.25rem;
         }
     }
 

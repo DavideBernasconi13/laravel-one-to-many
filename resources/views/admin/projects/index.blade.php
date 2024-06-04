@@ -2,9 +2,13 @@
 
 @section('content')
 <div class="container">
-    <h2 class="fs-4 text-secondary my-4">
-        Projects
-    </h2>
+    <div class="d-flex justify-content-between align-items-center">
+        <h2 class="fs-4 text-secondary my-4">
+            Projects
+        </h2>
+        <a href="{{route('admin.projects.create')}}" class="btn btn-primary">Create new project</a>
+    </div>
+
     <div class="row justify-content-center">
         <div class="col">
             <table class="table table-striped">
@@ -39,5 +43,7 @@
             </table>
         </div>
     </div>
+    {{$projects->links('vendor.pagination.bootstrap-5')}}
 </div>
+
 @endsection

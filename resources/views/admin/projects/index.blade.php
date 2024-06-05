@@ -58,6 +58,7 @@
         </div>
     </div>
     {{$projects->links('vendor.pagination.bootstrap-5')}}
+    @include('partials.modal-delete')
 </div>
 
 @endsection

@@ -26,12 +26,12 @@
                 @enderror
             </div>
             <div class="mb-3">
-                <label for="content" class="form-label">Content</label>
-                <textarea class="form-control @error('content') is-invalid @enderror" id="content" name="content"
+                <label for="description" class="form-label">Description</label>
+                <textarea class="form-control @error('desscription') is-invalid @enderror" id="description" name="description"
                     required>
-                {{ old('content') }}
+                {{ old('description') }}
               </textarea>
-                @error('content')
+                @error('description')
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
             </div>

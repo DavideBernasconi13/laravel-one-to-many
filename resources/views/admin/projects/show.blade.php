@@ -12,7 +12,7 @@
     </div>
     <div class="row">
         <div class="col-md-4">
-            <img src="{{'/storage/' . $project->image}}" alt="{{$project->title}}" class="show-image">
+            <img src="{{asset('storage/' . $project->image)}}" alt="{{$project->title}}" class="show-image">
         </div>
         <div class="col-md-8">
             <p class="alert alert-dark">{{$project->description}}</p>

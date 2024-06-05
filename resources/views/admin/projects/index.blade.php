@@ -23,7 +23,7 @@
                         <th scope="col">Slug</th>
                         <th scope="col">Created At</th>
                         <th scope="col">Update At</th>
-                        <th scope="col">Action</th>
+                        <th scope="col" class="action-col">Action</th>
                     </tr>
                 </thead>
                 <tbody>

@@ -41,7 +41,7 @@ class ProjectController extends Controller
         if ($request->hasFile('image')) {
             $path = Storage::put('project_images', $request->image);
             //dd($request->image);
-            $name = $request->image->getClientOriginalName(); //o il nome che volete dare al file
+            $name = $request->image->getClientOriginalName(); //prende il nome originale dal mio pc 
             $path = $request->file('image')->storeAs(
                 'project_images',
                 $name

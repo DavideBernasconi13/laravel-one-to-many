@@ -27,10 +27,8 @@
             </div>
             <div class="mb-3">
                 <label for="description" class="form-label">Description</label>
-                <textarea class="form-control @error('desscription') is-invalid @enderror" id="description" name="description"
-                    required>
-                {{ old('description') }}
-              </textarea>
+                <textarea class="form-control @error('desscription') is-invalid @enderror" id="description"
+                    name="description" required>{{ old('description') }}</textarea>
                 @error('description')
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror

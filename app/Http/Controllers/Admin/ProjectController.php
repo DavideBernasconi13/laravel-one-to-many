@@ -6,6 +6,7 @@ use App\Models\Project;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProjectRequest;
+use App\Http\Requests\UpdateProjectRequest;
 use App\Http\Requests\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -77,17 +78,36 @@ class ProjectController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Project $project)
+    public function update(UpdateProjectRequest $request, Project $project)
     {
+        $form_data = $request->all();
+        if ($project->title !== $form_data['title']) {
+            $form_data['slug'] = Project::generateSlug($form_data['title']);
+        }
+        // if ($request->hasFile('image')) {
+        //     if ($post->image) {
+        //         Storage::delete($post->image);
+        //     }
+        // $name = $request->image->getClientOriginalName();
+        // //dd($name);
+        // $path = Storage::putFileAs('post_images', $request->image, $name);
+        // $form_data['image'] = $path;
+        // }
+        // DB::enableQueryLog();
+        $project->update($form_data);
+        // $query = DB::getQueryLog();
+        // dd($query);
         return redirect()->route('admin.projects.show', $project->slug);
     }
-
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Project $project)
     {
+        // if ($post->image) {
+        //     Storage::delete($post->image);
+        // }
         $project->delete();
-        return redirect()->route('admin.projects.index');
+        return redirect()->route('admin.projects.index')->with('message', $project->title . ' è stato eliminato');
     }
 }

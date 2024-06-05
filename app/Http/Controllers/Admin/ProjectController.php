@@ -37,21 +37,23 @@ class ProjectController extends Controller
     {
         $form_data = $request->validated();
         $form_data['slug'] = Project::generateSlug($form_data['title']);
-        //$form_data['user_id'] = Auth::id();
-        // if ($request->hasFile('image')) {
-        //     //dd($request->image);
-        //     $name = $request->image->getClientOriginalName(); //o il nome che volete dare al file
-        //     // $path = $request->file('image')->storeAs(
-        //     //     'post_images',
-        //     //      $name
-        //     // );
+        //controllo se c'è un file
+        if ($request->hasFile('image')) {
+            $path = Storage::put('project_images', $request->image);
+            //dd($request->image);
+            $name = $request->image->getClientOriginalName(); //o il nome che volete dare al file
+            $path = $request->file('image')->storeAs(
+                'project_images',
+                $name
+            );
 
-        //     //dd($name);
-        //     $path = Storage::putFileAs('post_images', $request->image, $name);
-        //     //$path = Storage::put('post_images', $request->image);
-        //     $form_data['image'] = $path;
-        // }
-        //dd($path);// post_images/nomefile.png
+
+            //     //dd($name);
+            $path = Storage::putFileAs('post_images', $request->image, $name);
+            $path = Storage::put('post_images', $request->image);
+            $form_data['image'] = $path;
+            // dd($path); // post_images/nomefile.png
+        }
 
         $newProject = Project::create($form_data);
         return redirect()->route('admin.projects.show', $newProject->slug);

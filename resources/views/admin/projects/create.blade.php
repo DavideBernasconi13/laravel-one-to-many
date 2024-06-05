@@ -6,7 +6,7 @@
 <section>
     <div class="container">
         <h2>Create a new project</h2>
-        <form action="{{ route('admin.projects.store') }}" method="POST">
+        <form action="{{ route('admin.projects.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
                 <label for="title" class="form-label">Titolo</label>
@@ -19,8 +19,8 @@
             </div>
             <div class="mb-3">
                 <label for="image" class="form-label">Image</label>
-                <input type="url" class="form-control @error('image') is-invalid @enderror" id="image" name="image"
-                    value="{{ old('image') }}" maxlength="255">
+                <input type="file" accept="image/*" class="form-control @error('image') is-invalid @enderror" id="image"
+                    name="image" value="{{ old('image') }}" maxlength="255">
                 @error('image')
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror

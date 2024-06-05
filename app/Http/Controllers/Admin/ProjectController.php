@@ -86,15 +86,15 @@ class ProjectController extends Controller
         if ($project->title !== $form_data['title']) {
             $form_data['slug'] = Project::generateSlug($form_data['title']);
         }
-        // if ($request->hasFile('image')) {
-        //     if ($post->image) {
-        //         Storage::delete($post->image);
-        //     }
-        // $name = $request->image->getClientOriginalName();
+        if ($request->hasFile('image')) {
+           if ($project->image) {
+              Storage::delete($project->image);
+            }
+         $name = $request->image->getClientOriginalName();
         // //dd($name);
-        // $path = Storage::putFileAs('post_images', $request->image, $name);
-        // $form_data['image'] = $path;
-        // }
+         $path = Storage::putFileAs('project_images', $request->image, $name);
+         $form_data['image'] = $path;
+         }
         // DB::enableQueryLog();
         $project->update($form_data);
         // $query = DB::getQueryLog();

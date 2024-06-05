@@ -10,7 +10,7 @@
             <a href="{{route('admin.projects.show', $project->slug)}}" class="btn btn-secondary">Show project</a>
         </div>
 
-        <form action="{{ route('admin.projects.update', $project->slug) }}" method="project"
+        <form action="{{ route('admin.projects.update', $project->slug) }}" method="POST"
             enctype="multipart/form-data">
             @csrf
             @method('PUT')
@@ -45,8 +45,8 @@
             </div>
 
             <div class="mb-3">
-                <label for="content" class="form-label">Description</label>
-                <textarea class="form-control @error('content') is-invalid @enderror" id="description"
+                <label for="description" class="form-label">Description</label>
+                <textarea class="form-control @error('description') is-invalid @enderror" id="description"
                     name="description" required>{{ old('description', $project->description) }}</textarea>
                 @error('description')
                     <div class="alert alert-danger">{{ $message }}</div>

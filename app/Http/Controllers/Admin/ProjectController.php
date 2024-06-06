@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Project;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProjectRequest;
@@ -27,7 +28,9 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('admin.projects.create');
+        $categories = Category::all();
+        return view('admin.projects.create', compact('categories'));
+
     }
 
     /**
@@ -87,14 +90,14 @@ class ProjectController extends Controller
             $form_data['slug'] = Project::generateSlug($form_data['title']);
         }
         if ($request->hasFile('image')) {
-           if ($project->image) {
-              Storage::delete($project->image);
+            if ($project->image) {
+                Storage::delete($project->image);
             }
-         $name = $request->image->getClientOriginalName();
-        // //dd($name);
-         $path = Storage::putFileAs('project_images', $request->image, $name);
-         $form_data['image'] = $path;
-         }
+            $name = $request->image->getClientOriginalName();
+            // //dd($name);
+            $path = Storage::putFileAs('project_images', $request->image, $name);
+            $form_data['image'] = $path;
+        }
         // DB::enableQueryLog();
         $project->update($form_data);
         // $query = DB::getQueryLog();

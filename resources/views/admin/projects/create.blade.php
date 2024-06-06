@@ -35,6 +35,27 @@
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
             </div>
+            <div class="mb-3 d-flex align-items-center">
+                <div class="col-auto">
+                    <label for="category_id" class="col-form-label">Select category</label>
+                </div>
+                <div class="col-auto">
+                    <select class="form-control @error('category_id') is-invalid @enderror mx-3 w50" id="category_id"
+                        name="category_id">
+                        <option value="">Select category</option>
+                        @foreach($categories as $category){
+                            <option value="{{$category->id}} {{$category->id == old('category_id') ? 'selected' : ''}}">
+                                {{$category->name}}
+                            </option>
+                            }
+                        @endforeach
+                    </select>
+                    @error('description')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+
+            </div>
             <div class="mb-3">
                 <button type="submit" class="btn btn-danger">Create</button>
                 <button type="reset" class="btn btn-secondary">Reset</button>
@@ -42,6 +63,7 @@
             </div>
         </form>
     </div>
+
 
 </section>
 

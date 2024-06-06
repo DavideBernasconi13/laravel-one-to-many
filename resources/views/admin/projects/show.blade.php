@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Edit Project: ' . $project->title)
+@section('title', 'Show Project: ' . $project->title)
 
 @section('content')
 <div class="container">
@@ -10,8 +10,18 @@
             <a href="{{route('admin.projects.edit', $project->slug)}}" class="btn btn-secondary">Edit</a>
         </div>
     </div>
+    <div class="bg-secondary mb-3 p-1 text-bg-dark">
+        @if($project->category)
+            <p>Category: {{$project->category->name}}</p>
+        @else
+            <p>Nessuna categoria assegnata</p>
+        @endif
+
+
+    </div>
     <div class="row">
         <div class="col-md-4">
+
             <img src="{{asset('storage/' . $project->image)}}" alt="{{$project->title}}" class="show-image">
         </div>
         <div class="col-md-8">

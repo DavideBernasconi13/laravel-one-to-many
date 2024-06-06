@@ -1,13 +1,13 @@
 @extends('layouts.admin')
-@section('title', 'Projects')
+@section('title', 'Categories')
 
 @section('content')
 <div class="container">
     <div class="d-flex justify-content-between align-items-center">
         <h2 class="fs-4 text-secondary my-4">
-            Projects
+            Categories
         </h2>
-        <a href="{{route('admin.projects.create')}}" class="btn btn-primary">Create new project</a>
+        <a href="{{route('admin.categories.create')}}" class="btn btn-primary">Create new category</a>
     </div>
 
     @if(session()->has('message'))
@@ -20,7 +20,7 @@
                 <thead>
                     <tr>
                         <th scope="col">Id</th>
-                        <th scope="col">Title</th>
+                        <th scope="col">Name</th>
                         <th scope="col">Slug</th>
                         <th scope="col">Created At</th>
                         <th scope="col">Update At</th>
@@ -28,24 +28,24 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($projects as $project)
+                    @foreach ($categories as $category)
                         <tr>
-                            <td>{{$project->id}}</td>
-                            <td>{{$project->title}}</td>
-                            <td>{{$project->slug}}</td>
-                            <td>{{$project->created_at}}</td>
-                            <td>{{$project->updated_at}}</td>
+                            <td>{{$category->id}}</td>
+                            <td>{{$category->name}}</td>
+                            <td>{{$category->slug}}</td>
+                            <td>{{$category->created_at}}</td>
+                            <td>{{$category->updated_at}}</td>
                             <td>
-                                <a href="{{route('admin.projects.show', $project->slug)}}" title="Show"
+                                <a href="{{route('admin.categories.show', $category->slug)}}" title="Show"
                                     class="text-black px-2"><i class="fa-solid fa-eye"></i></a>
-                                <a href="{{route('admin.projects.edit', $project->slug)}}" title="Edit"
+                                <a href="{{route('admin.categories.edit', $category->slug)}}" title="Edit"
                                     class="text-black px-2"><i class="fa-solid fa-pen"></i></a>
-                                <form action="{{route('admin.projects.destroy', $project->slug)}}" method="POST"
+                                <form action="{{route('admin.categories.destroy', $category->slug)}}" method="POST"
                                     class="d-inline-block">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="delete-button border-0 bg-transparent"
-                                        data-item-title="{{ $project->title }}" data-item-id="{{ $project->id }}">
+                                        data-item-title="{{ $category->title }}" data-item-id="{{ $category->id }}">
                                         <i class="fa-solid fa-trash"></i>
                                     </button>
                                 </form>
@@ -58,7 +58,7 @@
             </table>
         </div>
     </div>
-    {{$projects->links('vendor.pagination.bootstrap-5')}}
+    <!-- {{$categories->links('vendor.pagination.bootstrap-5')}} -->
     @include('partials.modal-delete')
 </div>
 

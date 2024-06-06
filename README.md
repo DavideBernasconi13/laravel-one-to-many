@@ -16,7 +16,7 @@ cd your parent_folder_path
 laravel new your_project_name_here
 
 #per versione 9
-composer create-project --prefer-dist laravel/laravel:^9.2 your_project_name_here
+composer create-project --prefer-dist laravel/laravel:^10.0 your_project_name_here
 
 cd your_project_name_here
 

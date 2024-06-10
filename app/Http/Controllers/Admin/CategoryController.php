@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Project;
 use App\Models\Category;
 use Illuminate\Http\Request;
-
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreProjectRequest;
+use App\Http\Requests\UpdateProjectRequest;
+use App\Http\Requests\Auth;
+use Illuminate\Support\Facades\Storage;
+
 
 class CategoryController extends Controller
 {
@@ -23,15 +28,22 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.categories.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, Category $category)
     {
-        //
+        $form_data = $request->validate([
+            'name' => 'required|max:255',
+        ]);
+        $form_data = $request->all();
+        $form_data['slug'] = Category::generateSlug($form_data['name']);
+        $newCategory = Category::create($form_data);
+        return redirect()->route('admin.categories.index')->with('message', $category->name . 'è stata creata con successo');
+        ;
     }
 
     /**
@@ -39,7 +51,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        return view('admin.categories.show', compact('category'));
     }
 
     /**
@@ -47,7 +59,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('admin.categories.edit', compact('category'));
     }
 
     /**
@@ -55,7 +67,15 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:255',
+        ]);
+        $form_data = $request->all();
+        if ($category->name !== $form_data['name']) {
+            $form_data['slug'] = Category::generateSlug($form_data['name']);
+        }
+        $category->update($form_data);
+        return redirect()->route('admin.categories.show', $category->slug);
     }
 
     /**
@@ -63,6 +83,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return redirect()->route('admin.categories.index')->with('message', $category->name . ' è stato eliminato');
     }
 }

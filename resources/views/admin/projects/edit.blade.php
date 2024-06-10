@@ -60,9 +60,8 @@
                         name="category_id">
                         <option value="">Select category</option>
                         @foreach($categories as $category){
-                            <option value="{{$category->id}} {{$category->id == old('category_id') ? 'selected' : ''}}">
-                                {{$category->name}}
-                            </option>
+                            <option value="{{$category->id}}" {{ $category->id == $project->category_id ? 'selected' : '' }}>
+                                {{$category->name}}</option>
                             }
                         @endforeach
                     </select>
@@ -83,5 +82,7 @@
 
     </section>
 </div>
+<script src="//js.nicedit.com/nicEdit-latest.js" type="text/javascript"></script>
+<script type="text/javascript">bkLib.onDomLoaded(nicEditors.allTextAreas);</script>
 
 @endsection

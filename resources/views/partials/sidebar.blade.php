@@ -9,6 +9,9 @@
             <a class="nav-link text-white active" href="{{route('admin.projects.index')}}">Projects</a>
         </li>
         <li class="nav-item">
+            <a class="nav-link text-white active" href="{{route('admin.categories.index')}}">Category</a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link text-white" href="#">Link</a>
         </li>
 

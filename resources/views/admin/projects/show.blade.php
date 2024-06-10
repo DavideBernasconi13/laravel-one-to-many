@@ -25,7 +25,7 @@
             <img src="{{asset('storage/' . $project->image)}}" alt="{{$project->title}}" class="show-image">
         </div>
         <div class="col-md-8">
-            <p class="alert alert-dark">{{$project->description}}</p>
+            <p class="alert alert-dark">{!!$project->description!!}</p>
         </div>
     </div>
 
